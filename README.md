@@ -1,5 +1,7 @@
 # การสร้าง Hybrid Search ด้วย OpenSearch และ LlamaIndex
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yourusername/Creating-Vector-Indexes-and-Connecting-to-OpenSearch/blob/main/opensearch_tutorial.ipynb)
+
 ## ภาพรวมของบทเรียน
 
 ในบทเรียนนี้เราจะเรียนรู้การสร้างระบบ Hybrid Search ที่รวมการค้นหาแบบ semantic search และ keyword search เข้าด้วยกัน โดยใช้:
