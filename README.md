@@ -284,6 +284,21 @@ print("เสร็จสิ้นกระบวนการทั้งหม�
 
 ## 🔍 การตรวจสอบข้อมูลใน OpenSearch Index
 
+### ตรวจสอบ index ทั้งหมดที่มีใน OpenSearch
+```cmd
+curl -X GET "http://34.101.178.186:9200/_cat/indices?v" | more
+```
+
+### ตรวจสอบสถานะของ OpenSearch cluster
+```cmd
+curl -X GET "http://34.101.178.186:9200/_cluster/health?pretty" | more
+```
+
+### ตรวจสอบข้อมูลพื้นฐานของ OpenSearch
+```cmd
+curl -X GET "http://34.101.178.186:9200/" | more
+```
+
 ### คำสั่ง curl สำหรับ Windows (Command Prompt)
 ```cmd
 curl -X GET "http://34.101.178.186:9200/yourname_doc_index/_search?pretty" -H "Content-Type: application/json" -d "{\"query\": {\"match_all\": {}}}" | more
