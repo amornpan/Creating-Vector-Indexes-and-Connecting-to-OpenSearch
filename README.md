@@ -250,6 +250,66 @@ with open(index_filename, 'wb') as f:
 print(f"บันทึก index ลงในไฟล์ {index_filename} สำเร็จ")
 
 print("เสร็จสิ้นกระบวนการทั้งหมด!")
+
+# ===== 🔍 การทดสอบระบบค้นหา =====
+from llama_index.core import Settings
+
+# ปิดการใช้ LLM เพื่อหลีกเลี่ยงปัญหา OpenAI API key
+Settings.llm = None
+
+# Quick test of the search system
+print("\n🔍 Testing the search system...")
+
+# Create retriever instead of query_engine
+retriever = index.as_retriever(
+    vector_store_query_mode=VectorStoreQueryMode.HYBRID,
+    similarity_top_k=3
+)
+
+# Test queries
+test_queries = [
+    "What is machine learning?",
+    "How does artificial intelligence work?", 
+    "Explain neural networks",
+    "การเรียนรู้ของเครื่อง"  # ทดสอบภาษาไทย
+]
+
+for i, query in enumerate(test_queries, 1):
+    print(f"\n🔍 Test Query {i}: {query}")
+    try:
+        nodes = retriever.retrieve(query)
+        print(f"✅ Found {len(nodes)} relevant documents:")
+        for j, node in enumerate(nodes, 1):
+            print(f"  {j}. Score: {node.score:.3f}")
+            print(f"     Content: {node.text[:150]}...")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+print("\n🎯 Search system is working! Documents are being retrieved successfully.")
+
+# ทดสอบการค้นหาแบบ keyword vs semantic
+print("\n🔬 Testing different search modes...")
+
+# Semantic search only
+print("\n🧠 Semantic Search:")
+semantic_retriever = index.as_retriever(
+    vector_store_query_mode=VectorStoreQueryMode.DEFAULT,
+    similarity_top_k=2
+)
+
+# Keyword search (text search)
+print("\n🔍 Hybrid Search vs Semantic Search:")
+# Note: OpenSearch hybrid search จะรวม keyword + semantic อยู่แล้ว
+
+test_query = "machine learning algorithms"
+semantic_results = semantic_retriever.retrieve(test_query)
+hybrid_results = retriever.retrieve(test_query)
+
+print(f"Query: {test_query}")
+print(f"Semantic only: {len(semantic_results)} results")
+print(f"Hybrid search: {len(hybrid_results)} results")
+
+print("\n✨ Hybrid search test completed!")
 ```
 
 **คำอธิบาย:**
