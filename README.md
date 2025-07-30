@@ -279,3 +279,52 @@ print("เสร็จสิ้นกระบวนการทั้งหม�
 - OpenSearch index ที่พร้อมใช้งาน
 - ไฟล์ `.pkl` สำหรับโหลด index ใหม่
 - ระบบ hybrid search ที่พร้อมตอบคำถาม
+
+---
+
+## 🔍 การตรวจสอบข้อมูลใน OpenSearch Index
+
+### คำสั่ง curl สำหรับ Windows (Command Prompt)
+```cmd
+curl -X GET "http://34.101.178.186:9200/yourname_doc_index/_search?pretty" -H "Content-Type: application/json" -d "{\"query\": {\"match_all\": {}}}" | more
+```
+
+### คำสั่ง curl สำหรับ Windows (PowerShell)
+```powershell
+curl -X GET "http://34.101.178.186:9200/yourname_doc_index/_search?pretty" -H "Content-Type: application/json" -d '{
+  "query": {
+    "match_all": {}
+  }
+}' | more
+```
+
+### คำสั่ง curl สำหรับ macOS/Linux
+```bash
+curl -X GET "http://34.101.178.186:9200/yourname_doc_index/_search?pretty" -H 'Content-Type: application/json' -d'{
+  "query": {
+    "match_all": {}
+  }
+}' | more
+```
+
+### Python (ใช้ได้บนทุก OS)
+```python
+import requests
+import json
+
+# ตรวจสอบ OpenSearch index
+endpoint = "http://34.101.178.186:9200"
+index_name = "amornpan_doc_index"  # เปลี่ยนเป็นชื่อ index ของคุณ
+
+response = requests.get(f"{endpoint}/{index_name}/_search?pretty", 
+                       json={"query": {"match_all": {}}})
+
+if response.status_code == 200:
+    result = response.json()
+    print(f"Total documents: {result['hits']['total']['value']}")
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+else:
+    print(f"Error: {response.status_code} - {response.text}")
+```
+
+**หมายเหตุ:** อย่าลืมเปลี่ยน `yourname_doc_index` เป็นชื่อ index ที่คุณใช้จริง
