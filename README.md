@@ -1,6 +1,13 @@
 # การสร้าง Hybrid Search ด้วย OpenSearch และ LlamaIndex
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yourusername/Creating-Vector-Indexes-and-Connecting-to-OpenSearch/blob/main/opensearch_tutorial.ipynb)
+## 🚀 เปิดใน Google Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amornpan/Creating-Vector-Indexes-and-Connecting-to-OpenSearch/blob/master/opensearch_tutorial.ipynb)
+
+**วิธีการเปิด Notebook ใน Google Colab:**
+
+1. คลิกปุ่ม "Open In Colab" ด้านบน
+2. หรือไปที่ [opensearch_tutorial.ipynb](https://github.com/amornpan/Creating-Vector-Indexes-and-Connecting-to-OpenSearch/blob/master/opensearch_tutorial.ipynb) ใน GitHub แล้วคลิกปุ่ม "Open in Colab"
 
 ## ภาพรวมของบทเรียน
 
